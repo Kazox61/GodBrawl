@@ -7,9 +7,13 @@ public partial class ActorBase : CharacterBody3D {
 	[Export] public float MaxVelocity = 10f;
 
 	[Export] public Node3D Body;
+	[Export] public Area3D BodyArea;
+	
+	[Export] public ActorCompMultiplayer CompMultiplayer;
+	[Export] public ActorCompVisibility CompVisibility;
 	
 	// This can be set from outside to move the Actor
-	[Export] public Vector2 MoveDirection;
+	public Vector2 MoveDirection;
 	
 	private float Gravity => ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 

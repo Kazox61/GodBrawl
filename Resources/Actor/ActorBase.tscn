@@ -1,32 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8dwetmy0e0be"]
+[gd_scene load_steps=9 format=3 uid="uid://c8dwetmy0e0be"]
 
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="1_5r1j0"]
 [ext_resource type="Script" uid="uid://cyax0umtnh10d" path="res://Scripts/Game/Actor/ActorBase.cs" id="1_p2f2x"]
+[ext_resource type="Script" uid="uid://r4et3akid1d1" path="res://Scripts/Game/Actor/Composites/ActorCompMultiplayer.cs" id="3_qg27i"]
+[ext_resource type="Script" uid="uid://c7653ujifou7c" path="res://Scripts/Game/Actor/Composites/ActorCompVisibility.cs" id="4_2g8rh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2f2x"]
 height = 1.35
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ui7lw"]
-properties/0/path = NodePath(".:PlayerPeerId")
+properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 0
-properties/1/path = NodePath(".:position")
+properties/0/replication_mode = 1
+properties/1/path = NodePath("GobotSkin:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("GobotSkin:rotation")
+properties/2/path = NodePath("Composites/CompMultiplayer:PlayerPeerId")
 properties/2/spawn = true
-properties/2/replication_mode = 1
+properties/2/replication_mode = 0
 
-[node name="ActorBase" type="CharacterBody3D" node_paths=PackedStringArray("Body")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2g8rh"]
+radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qg27i"]
+radius = 0.3
+
+[node name="ActorBase" type="CharacterBody3D" node_paths=PackedStringArray("Body", "BodyArea", "CompMultiplayer", "CompVisibility")]
 collision_layer = 2
 script = ExtResource("1_p2f2x")
 Body = NodePath("GobotSkin")
-
-[node name="GobotSkin" parent="." instance=ExtResource("1_5r1j0")]
+BodyArea = NodePath("BodyArea")
+CompMultiplayer = NodePath("Composites/CompMultiplayer")
+CompVisibility = NodePath("Composites/CompVisibility")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
 shape = SubResource("CapsuleShape3D_p2f2x")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="GobotSkin" parent="." instance=ExtResource("1_5r1j0")]
+
+[node name="Awareness" type="Node3D" parent="."]
+
+[node name="Composites" type="Node3D" parent="."]
+
+[node name="CompMultiplayer" type="Node" parent="Composites" node_paths=PackedStringArray("MultiplayerSynchronizer")]
+script = ExtResource("3_qg27i")
+MultiplayerSynchronizer = NodePath("MultiplayerSynchronizer")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Composites/CompMultiplayer"]
+root_path = NodePath("../../..")
 replication_config = SubResource("SceneReplicationConfig_ui7lw")
+
+[node name="CompVisibility" type="Node3D" parent="Composites" node_paths=PackedStringArray("_actor", "_compMultiplayer", "_closeArea")]
+script = ExtResource("4_2g8rh")
+_actor = NodePath("../..")
+_compMultiplayer = NodePath("../CompMultiplayer")
+_closeArea = NodePath("CloseArea")
+
+[node name="CloseArea" type="Area3D" parent="Composites/CompVisibility"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Composites/CompVisibility/CloseArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CylinderShape3D_2g8rh")
+debug_color = Color(0.435427, 0.455917, 1, 0.42)
+
+[node name="BodyArea" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_qg27i")

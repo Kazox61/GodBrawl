@@ -9,11 +9,11 @@ material = SubResource("StandardMaterial3D_3q3dw")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_futla"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsoxc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_futla"]
 albedo_color = Color(1, 0.827451, 0.388235, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jggad"]
-material = SubResource("StandardMaterial3D_jsoxc")
+material = SubResource("StandardMaterial3D_futla")
 height = 1.0
 
 [node name="TileSet" type="Node3D"]

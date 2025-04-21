@@ -14,7 +14,11 @@ public partial class ControllerLocalPlayer : Node3D {
 	public Vector2 AimDirection;
 
 	public override void _Ready() {
-		if (!IsMultiplayerAuthority()) {
+		/*
+		 * With this return early, physics process is only called when it has authority.
+		 * This is set in ActorPlayer PlayerPeerId property.
+		 */
+		if (Multiplayer.MultiplayerPeer == null || !IsMultiplayerAuthority()) {
 			return;
 		}
 		

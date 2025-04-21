@@ -56,7 +56,8 @@ public partial class ControllerMultiplayer : Node {
 	
 	private void OnClientConnected(long peer) {
 		var actorPlayer = _actorPlayerPrefab.Instantiate<ActorPlayer>();
-		actorPlayer.PlayerPeerId = (int)peer;
+		actorPlayer.CompMultiplayer.PlayerPeerId = (int)peer;
+		actorPlayer.CompVisibility.InitializeVisibilityFilter();
 		
 		_rootNode.AddChild(actorPlayer, true);
 
