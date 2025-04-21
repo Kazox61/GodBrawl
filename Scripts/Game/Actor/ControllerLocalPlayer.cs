@@ -6,9 +6,12 @@ namespace GodBrawl.Game.Actor;
 public partial class ControllerLocalPlayer : Node3D {
 	[Export] private ActorPlayer _actorPlayer;
 	[Export] private Camera3D _camera;
+	[Export] private ActorAttackIndicator _attackIndicator;
+	
 	[Export] private PackedScene _canvasLocalPlayerPrefab;
 	
 	public Vector2 MoveDirection;
+	public Vector2 AimDirection;
 
 	public override void _Ready() {
 		if (!IsMultiplayerAuthority()) {
@@ -38,6 +41,14 @@ public partial class ControllerLocalPlayer : Node3D {
 		}
 		
 		MoveDirection = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+		AimDirection = Input.GetVector("aim_left", "aim_right", "aim_up", "aim_down");
+		if (AimDirection.IsZeroApprox()) {
+			_attackIndicator.Active = false;
+		}
+		else {
+			_attackIndicator.Active = true;
+			_attackIndicator.HandleInput(AimDirection);
+		}
 	}
 	
 	private void OnAimJoystickReleased(Vector2 inputDirection) {
