@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 namespace GodBrawl.Game.Actor;
@@ -11,8 +10,8 @@ namespace GodBrawl.Game.Actor;
  */
 public partial class ActorCompVisibility : Node3D {
 	[Export] private ActorBase _actor;
-	[Export] private ActorCompMultiplayer _compMultiplayer;
 	[Export] private Area3D _closeArea;
+	[Export] private MultiplayerSynchronizer _multiplayerSynchronizer;
 
 	
 	private readonly HashSet<ActorPlayer> _closeActors = [];
@@ -21,12 +20,12 @@ public partial class ActorCompVisibility : Node3D {
 	private bool InsideBush => _bushAreas.Count > 0;
 	
 	private Callable VisibilityFilter => Callable.From((int peerId) => {
-		if (peerId == _compMultiplayer.PlayerPeerId) {
+		if (peerId == _actor.PlayerPeerId) {
 			return true;
 		}
 		
 		// _closeActors.Any(actor => actor.CompMultiplayer.PlayerPeerId == peerId)
-		return !InsideBush;
+		return false;
  	});
 
 	public override void _Ready() {
@@ -66,7 +65,7 @@ public partial class ActorCompVisibility : Node3D {
 	}
 
 	public void InitializeVisibilityFilter() {
-		_compMultiplayer.MultiplayerSynchronizer.AddVisibilityFilter(VisibilityFilter);
-		_compMultiplayer.MultiplayerSynchronizer.UpdateVisibility();
+		_multiplayerSynchronizer.AddVisibilityFilter(VisibilityFilter);
+		_multiplayerSynchronizer.UpdateVisibility();
 	}
 }

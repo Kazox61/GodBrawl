@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8uthocglwpnk"]
+[gd_scene load_steps=9 format=3 uid="uid://c8uthocglwpnk"]
 
 [ext_resource type="PackedScene" uid="uid://doi7k3jdn3xn0" path="res://Resources/Map/TestMap.tscn" id="1_vr6xi"]
 [ext_resource type="PackedScene" uid="uid://bbw8cq7e8ygo4" path="res://Resources/Actor/ActorPlayer.tscn" id="2_2h7oj"]
 [ext_resource type="Script" uid="uid://l08ys78jw6jt" path="res://Scripts/Game/ControllerMultiplayer.cs" id="2_vr6xi"]
 [ext_resource type="Resource" uid="uid://bnd2gncgto8ot" path="res://Resources/Configs/StartConfig.tres" id="3_2h7oj"]
+[ext_resource type="PackedScene" uid="uid://cbwkxmaokarst" path="res://Resources/LocalPlayer.tscn" id="4_p46lj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tn1lc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -32,12 +33,13 @@ shadow_blur = 1.25
 [node name="TestMap" parent="." instance=ExtResource("1_vr6xi")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4")
+_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4", "uid://cbwkxmaokarst")
 spawn_path = NodePath("..")
 
 [node name="ControllerMultiplayer" type="Node" parent="." node_paths=PackedStringArray("_rootNode", "_map")]
 script = ExtResource("2_vr6xi")
 _startConfig = ExtResource("3_2h7oj")
+_localPlayerPrefab = ExtResource("4_p46lj")
 _actorPlayerPrefab = ExtResource("2_2h7oj")
 _rootNode = NodePath("..")
 _map = NodePath("../TestMap")
