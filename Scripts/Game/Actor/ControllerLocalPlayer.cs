@@ -1,3 +1,4 @@
+using GodBrawl.Game.UserInterface;
 using Godot;
 
 namespace GodBrawl.Game.Actor;
@@ -5,6 +6,7 @@ namespace GodBrawl.Game.Actor;
 public partial class ControllerLocalPlayer : Node3D {
 	[Export] private ActorPlayer _actorPlayer;
 	[Export] private Camera3D _camera;
+	[Export] private PackedScene _canvasLocalPlayerPrefab;
 	
 	public Vector2 MoveDirection;
 
@@ -14,7 +16,11 @@ public partial class ControllerLocalPlayer : Node3D {
 		}
 		
 		_camera.Current = true;
-		ControllerMultiplayer.Instance.AimJoystick.JoystickReleased += OnAimJoystickReleased;
+		
+		var canvasLocalPlayer = _canvasLocalPlayerPrefab.Instantiate<CanvasLocalPlayer>();
+		GetTree().Root.AddChild(canvasLocalPlayer);
+		
+		canvasLocalPlayer.AimJoystick.JoystickReleased += OnAimJoystickReleased;
 	}
 
 	public override void _PhysicsProcess(double delta) {

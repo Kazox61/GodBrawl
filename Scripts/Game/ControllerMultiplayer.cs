@@ -4,14 +4,11 @@ using GodBrawl.Config;
 using GodBrawl.Extensions;
 using GodBrawl.Game.Actor;
 using Godot;
-using GodotMobileControls.MobileJoystick;
 
 namespace GodBrawl.Game;
 
 public partial class ControllerMultiplayer : Node {
 	public static ControllerMultiplayer Instance;
-	
-	[Export] public MobileJoystick AimJoystick;
 	
 	[Export] private StartConfig _startConfig;
 	[Export] private PackedScene _actorPlayerPrefab;
