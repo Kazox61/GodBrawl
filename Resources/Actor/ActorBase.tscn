@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8dwetmy0e0be"]
+
+[ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="1_5r1j0"]
+[ext_resource type="Script" uid="uid://cyax0umtnh10d" path="res://Scripts/Game/Actor/ActorBase.cs" id="1_p2f2x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2f2x"]
+height = 1.35
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ui7lw"]
+properties/0/path = NodePath(".:PlayerPeerId")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("GobotSkin:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="ActorBase" type="CharacterBody3D" node_paths=PackedStringArray("Body")]
+collision_layer = 2
+script = ExtResource("1_p2f2x")
+Body = NodePath("GobotSkin")
+
+[node name="GobotSkin" parent="." instance=ExtResource("1_5r1j0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
+shape = SubResource("CapsuleShape3D_p2f2x")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ui7lw")

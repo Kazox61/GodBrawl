@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8uthocglwpnk"]
+
+[ext_resource type="PackedScene" uid="uid://doi7k3jdn3xn0" path="res://Resources/Map/TestMap.tscn" id="1_vr6xi"]
+[ext_resource type="PackedScene" uid="uid://bbw8cq7e8ygo4" path="res://Resources/Actor/ActorPlayer.tscn" id="2_2h7oj"]
+[ext_resource type="Script" uid="uid://l08ys78jw6jt" path="res://Scripts/Game/ControllerMultiplayer.cs" id="2_vr6xi"]
+[ext_resource type="Resource" uid="uid://bnd2gncgto8ot" path="res://Resources/Configs/StartConfig.tres" id="3_2h7oj"]
+[ext_resource type="PackedScene" uid="uid://c4li1csefaho2" path="res://addons/MobileControls/MobileJoystick/MobileJoystick.tscn" id="5_p46lj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tn1lc"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_ae86l"]
+sky_material = SubResource("ProceduralSkyMaterial_tn1lc")
+
+[sub_resource type="Environment" id="Environment_fk2vi"]
+background_mode = 2
+sky = SubResource("Sky_ae86l")
+tonemap_mode = 2
+
+[node name="Battle" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fk2vi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.2
+shadow_enabled = true
+shadow_bias = 0.04
+shadow_blur = 1.25
+
+[node name="TestMap" parent="." instance=ExtResource("1_vr6xi")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4")
+spawn_path = NodePath("..")
+
+[node name="ControllerMultiplayer" type="Node" parent="." node_paths=PackedStringArray("AimJoystick", "_rootNode", "_map")]
+script = ExtResource("2_vr6xi")
+AimJoystick = NodePath("../CanvasLayer/HBoxContainer/AimJoystick")
+_startConfig = ExtResource("3_2h7oj")
+_actorPlayerPrefab = ExtResource("2_2h7oj")
+_rootNode = NodePath("..")
+_map = NodePath("../TestMap")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.476254, 0.879308, 0, -0.879308, 0.476254, 0, 9.41806, 9.40161)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveJoystick" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_p46lj")]
+layout_mode = 2
+size_flags_horizontal = 3
+JoystickMode = 1
+ActionLeft = "move_left"
+ActionRight = "move_right"
+ActionUp = "move_up"
+ActionDown = "move_down"
+
+[node name="Base" parent="CanvasLayer/HBoxContainer/MoveJoystick" index="0"]
+offset_left = -250.0
+offset_top = 150.0
+offset_right = -50.0
+offset_bottom = 350.0
+
+[node name="AimJoystick" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_p46lj")]
+layout_mode = 2
+size_flags_horizontal = 3
+JoystickMode = 1
+ActionLeft = "aim_left"
+ActionRight = "aim_right"
+ActionUp = "aim_up"
+ActionDown = "aim_down"
+
+[node name="Base" parent="CanvasLayer/HBoxContainer/AimJoystick" index="0"]
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 250.0
+offset_bottom = 350.0
+
+[editable path="CanvasLayer/HBoxContainer/MoveJoystick"]
+[editable path="CanvasLayer/HBoxContainer/AimJoystick"]

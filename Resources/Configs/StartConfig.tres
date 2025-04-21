@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ClientConfig" load_steps=2 format=3 uid="uid://bnd2gncgto8ot"]
+
+[ext_resource type="Script" uid="uid://dx7vqvbg5krjg" path="res://Scripts/Config/StartConfig.cs" id="1_venq5"]
+
+[resource]
+script = ExtResource("1_venq5")
+IsClient = false
+Ip = "127.0.0.1"
+Port = 12345
+BrawlerId = 0
+metadata/_custom_type_script = "uid://dx7vqvbg5krjg"

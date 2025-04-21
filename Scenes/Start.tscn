@@ -1,0 +1,432 @@
+[gd_scene load_steps=14 format=3 uid="uid://bu33evsufunji"]
+
+[ext_resource type="Script" uid="uid://bn44tstqq7dww" path="res://Scripts/Game/UserInterface/ComponentClient.cs" id="1_nt0jr"]
+[ext_resource type="Resource" uid="uid://bnd2gncgto8ot" path="res://Resources/Configs/StartConfig.tres" id="2_1lxxj"]
+[ext_resource type="Script" uid="uid://btw3ejqnpoqi6" path="res://Scripts/Game/UserInterface/ComponentServer.cs" id="2_y4ycm"]
+[ext_resource type="PackedScene" uid="uid://c8uthocglwpnk" path="res://Scenes/Battle.tscn" id="3_1lxxj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm4sf"]
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og4jd"]
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt0jr"]
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4ycm"]
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lxxj"]
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nm4sf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37b1d"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmkek"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.584314, 0.0784314, 0.992157, 1)
+border_color = Color(0.584314, 0.0784314, 0.992157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_og4jd"]
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Left" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="ClientButton" type="Button" parent="HBoxContainer/Left"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_nm4sf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_og4jd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nt0jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1lxxj")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_nm4sf")
+text = "Client"
+
+[node name="ServerButton" type="Button" parent="HBoxContainer/Left"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_nm4sf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_og4jd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nt0jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1lxxj")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_nm4sf")
+text = "Server"
+
+[node name="Right" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Right"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.00784314, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer/Right"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -405.0
+offset_right = 241.0
+offset_bottom = -405.0
+grow_vertical = 2
+rotation = 0.10472
+color = Color(0, 0, 0.00784314, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer/Right"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = 546.0
+offset_right = 288.0
+offset_bottom = 546.0
+grow_vertical = 2
+rotation = 0.10472
+color = Color(0, 0, 0.00784314, 1)
+
+[node name="ComponentClient" type="Control" parent="HBoxContainer/Right"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt0jr")
+_startConfig = ExtResource("2_1lxxj")
+_battleScene = ExtResource("3_1lxxj")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right/ComponentClient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/ComponentClient/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "Client"
+
+[node name="Ip" type="HBoxContainer" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Ip"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Ip:"
+
+[node name="IpEdit" type="LineEdit" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Ip"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+text = "127.0.0.1"
+
+[node name="Port" type="HBoxContainer" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Port"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Port:"
+
+[node name="PortEdit" type="LineEdit" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Port"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+text = "12345"
+virtual_keyboard_type = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Brawler1" type="Button" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_og4jd")
+
+[node name="Spacer" type="Control" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Brawler2" type="Button" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_og4jd")
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Brawler3" type="Button" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_og4jd")
+
+[node name="Spacer3" type="Control" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Brawler4" type="Button" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lmkek")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_og4jd")
+
+[node name="Expand" type="Control" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConfirmButton" type="Button" parent="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_nm4sf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_og4jd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nt0jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+text = "Confirm"
+
+[node name="ComponentServer" type="Control" parent="HBoxContainer/Right"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_y4ycm")
+_startConfig = ExtResource("2_1lxxj")
+_battleScene = ExtResource("3_1lxxj")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right/ComponentServer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/ComponentServer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "Server"
+
+[node name="Port" type="HBoxContainer" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer/Port"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Port:"
+
+[node name="PortEdit" type="LineEdit" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer/Port"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_37b1d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_37b1d")
+text = "12345"
+virtual_keyboard_type = 2
+
+[node name="Expand" type="Control" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConfirmButton" type="Button" parent="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_nm4sf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_og4jd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nt0jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y4ycm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4ycm")
+text = "Confirm"
+
+[connection signal="toggled" from="HBoxContainer/Left/ClientButton" to="HBoxContainer/Right/ComponentClient" method="set_visible"]
+[connection signal="toggled" from="HBoxContainer/Left/ServerButton" to="HBoxContainer/Right/ComponentServer" method="set_visible"]
+[connection signal="text_changed" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Ip/IpEdit" to="HBoxContainer/Right/ComponentClient" method="OnIpTextChanged"]
+[connection signal="text_changed" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/Port/PortEdit" to="HBoxContainer/Right/ComponentClient" method="OnPortTextChanged"]
+[connection signal="toggled" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Brawler1" to="HBoxContainer/Right/ComponentClient" method="OnBrawlerToggled" binds= [0]]
+[connection signal="toggled" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Brawler2" to="HBoxContainer/Right/ComponentClient" method="OnBrawlerToggled" binds= [1]]
+[connection signal="toggled" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Brawler3" to="HBoxContainer/Right/ComponentClient" method="OnBrawlerToggled" binds= [2]]
+[connection signal="toggled" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Brawler4" to="HBoxContainer/Right/ComponentClient" method="OnBrawlerToggled" binds= [3]]
+[connection signal="pressed" from="HBoxContainer/Right/ComponentClient/MarginContainer/VBoxContainer/ConfirmButton" to="HBoxContainer/Right/ComponentClient" method="OnConfirmButtonPressed"]
+[connection signal="text_changed" from="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer/Port/PortEdit" to="HBoxContainer/Right/ComponentServer" method="OnPortTextChanged"]
+[connection signal="pressed" from="HBoxContainer/Right/ComponentServer/MarginContainer/VBoxContainer/ConfirmButton" to="HBoxContainer/Right/ComponentServer" method="OnConfirmButtonPressed"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbw8cq7e8ygo4"]
+
+[ext_resource type="PackedScene" uid="uid://c8dwetmy0e0be" path="res://Resources/Actor/ActorBase.tscn" id="1_yge73"]
+[ext_resource type="Script" uid="uid://dwr1wvplpxi6p" path="res://Scripts/Game/Actor/ActorPlayer.cs" id="2_seuuj"]
+[ext_resource type="Script" uid="uid://crsijggkd541f" path="res://Scripts/Game/Actor/ControllerLocalPlayer.cs" id="3_5e6l1"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_seuuj"]
+properties/0/path = NodePath("ControllerLocalPlayer:MoveDirection")
+properties/0/spawn = false
+properties/0/replication_mode = 1
+
+[node name="ActorPlayer" node_paths=PackedStringArray("LocalPlayerSynchronizer", "ControllerLocalPlayer") instance=ExtResource("1_yge73")]
+script = ExtResource("2_seuuj")
+LocalPlayerSynchronizer = NodePath("LocalPlayerSynchronizer")
+ControllerLocalPlayer = NodePath("ControllerLocalPlayer")
+
+[node name="LocalPlayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="3"]
+replication_config = SubResource("SceneReplicationConfig_seuuj")
+
+[node name="ControllerLocalPlayer" type="Node3D" parent="." index="4" node_paths=PackedStringArray("_actorPlayer", "_camera")]
+script = ExtResource("3_5e6l1")
+_actorPlayer = NodePath("..")
+_camera = NodePath("CameraPivot/Camera3D")
+
+[node name="CameraPivot" type="Node3D" parent="ControllerLocalPlayer" index="0"]
+transform = Transform3D(-1, -7.16125e-08, -5.01436e-08, 0, 0.573576, -0.819152, 8.74228e-08, -0.819152, -0.573576, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="ControllerLocalPlayer/CameraPivot" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -90)
+fov = 7.0
