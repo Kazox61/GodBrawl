@@ -35,7 +35,7 @@ shadow_blur = 1.25
 _spawnParent = NodePath("../..")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4", "uid://ca707t4h8da56", "uid://bnx85qkr3v6x1")
+_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4", "uid://ca707t4h8da56", "uid://bnx85qkr3v6x1", "uid://c8qujbmphb1qk", "uid://cdx6nax2nbd7h")
 spawn_path = NodePath("..")
 
 [node name="ControllerMultiplayer" type="Node" parent="." node_paths=PackedStringArray("_spawnParent", "_map")]
