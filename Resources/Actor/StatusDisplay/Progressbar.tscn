@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://w3r8g6cctjt5"]
+
+[ext_resource type="Script" uid="uid://k07lhfj653qs" path="res://Scripts/Game/UserInterface/Progressbar.cs" id="1_p76kg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p76kg"]
+bg_color = Color(0.054902, 0.109804, 0.231373, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfhdm"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 3
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[node name="Progressbar" type="Panel" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+custom_minimum_size = Vector2(300, 70)
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_p76kg")
+script = ExtResource("1_p76kg")
+ProgressRatio = 1.0
+_fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
+_spacer = NodePath("InnerMask/HBoxContainer/Spacer")
+_backgroundUp = NodePath("InnerMask/Background/ColorRect")
+_backgroundDown = NodePath("InnerMask/Background/ColorRect2")
+_fillUp = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect")
+_fillDown = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect2")
+
+[node name="InnerMask" type="PanelContainer" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xfhdm")
+
+[node name="Background" type="VBoxContainer" parent="InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FillContainer" type="VBoxContainer" parent="InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.2, 1, 0.34902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.14902, 0.74902, 0.262745, 1)
+
+[node name="Spacer" type="Control" parent="InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0

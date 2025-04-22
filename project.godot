@@ -31,7 +31,11 @@ project/assembly_name="GodBrawl"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/MobileControls/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://cf2m3t54q6jho"
 
 [input]
 

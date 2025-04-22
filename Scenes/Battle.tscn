@@ -48,4 +48,19 @@ _map = NodePath("../TestMap")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.476254, 0.879308, 0, -0.879308, 0.476254, 0, 9.41806, 9.40161)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 411.0
+offset_bottom = 84.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 48
+text = "Brawlers left: 10"
+
 [editable path="TestMap"]

@@ -1,0 +1,377 @@
+[gd_scene load_steps=7 format=3 uid="uid://csl0s3aen0dk0"]
+
+[ext_resource type="Script" uid="uid://k07lhfj653qs" path="res://Scripts/Game/UserInterface/Progressbar.cs" id="1_84fii"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cneod"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84fii"]
+bg_color = Color(0.054902, 0.109804, 0.231373, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxj5b"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 3
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiwnq"]
+bg_color = Color(0.054902, 0.109804, 0.231373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57jp1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 3
+border_width_right = 5
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 16
+
+[node name="StatusDisplay" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2.5, 0)
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_cneod")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1200, 600)
+
+[node name="Control" type="Control" parent="Sprite3D/SubViewport"]
+custom_minimum_size = Vector2(1200, 600)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1200.0
+offset_bottom = 600.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sprite3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 56
+text = "Flori"
+
+[node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="Progressbar" type="Panel" parent="Sprite3D/SubViewport/Control/VBoxContainer" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+custom_minimum_size = Vector2(330, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_84fii")
+script = ExtResource("1_84fii")
+ProgressRatio = 1.0
+_fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
+_spacer = NodePath("InnerMask/HBoxContainer/Spacer")
+_backgroundUp = NodePath("InnerMask/Background/ColorRect")
+_backgroundDown = NodePath("InnerMask/Background/ColorRect2")
+_fillUp = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect")
+_fillDown = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect2")
+
+[node name="InnerMask" type="PanelContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxj5b")
+
+[node name="Background" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FillContainer" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.2, 1, 0.34902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.14902, 0.74902, 0.262745, 1)
+
+[node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/Control/VBoxContainer/Progressbar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_top = -40.0
+offset_right = 74.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 56
+text = "7400"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Progressbar2" type="Panel" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qiwnq")
+script = ExtResource("1_84fii")
+ProgressRatio = 1.0
+FillColorUp = Color(1, 0.523594, 0.253938, 1)
+FillColorDown = Color(0.982507, 0.358106, 0, 1)
+_fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
+_spacer = NodePath("InnerMask/HBoxContainer/Spacer")
+_backgroundUp = NodePath("InnerMask/Background/ColorRect")
+_backgroundDown = NodePath("InnerMask/Background/ColorRect2")
+_fillUp = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect")
+_fillDown = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect2")
+
+[node name="InnerMask" type="PanelContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_57jp1")
+
+[node name="Background" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FillContainer" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 0.523594, 0.253938, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.982507, 0.358106, 0, 1)
+
+[node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar2/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Progressbar3" type="Panel" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qiwnq")
+script = ExtResource("1_84fii")
+ProgressRatio = 1.0
+FillColorUp = Color(1, 0.523594, 0.253938, 1)
+FillColorDown = Color(0.982507, 0.358106, 0, 1)
+_fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
+_spacer = NodePath("InnerMask/HBoxContainer/Spacer")
+_backgroundUp = NodePath("InnerMask/Background/ColorRect")
+_backgroundDown = NodePath("InnerMask/Background/ColorRect2")
+_fillUp = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect")
+_fillDown = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect2")
+
+[node name="InnerMask" type="PanelContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_57jp1")
+
+[node name="Background" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FillContainer" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 0.523594, 0.253938, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.982507, 0.358106, 0, 1)
+
+[node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar3/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Progressbar4" type="Panel" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qiwnq")
+script = ExtResource("1_84fii")
+ProgressRatio = 1.0
+FillColorUp = Color(1, 0.523594, 0.253938, 1)
+FillColorDown = Color(0.982507, 0.358106, 0, 1)
+_fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
+_spacer = NodePath("InnerMask/HBoxContainer/Spacer")
+_backgroundUp = NodePath("InnerMask/Background/ColorRect")
+_backgroundDown = NodePath("InnerMask/Background/ColorRect2")
+_fillUp = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect")
+_fillDown = NodePath("InnerMask/HBoxContainer/FillContainer/ColorRect2")
+
+[node name="InnerMask" type="PanelContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_57jp1")
+
+[node name="Background" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/Background"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FillContainer" type="VBoxContainer" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(1, 0.523594, 0.253938, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/HBoxContainer/FillContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.982507, 0.358106, 0, 1)
+
+[node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer/HBoxContainer/Progressbar4/InnerMask/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
