@@ -1,3 +1,4 @@
+using GodBrawl.Extensions;
 using GodBrawl.Game.UserInterface;
 using Godot;
 
@@ -14,6 +15,9 @@ public partial class ControllerLocalPlayer : Node3D {
 	public Vector2 AimDirection;
 
 	public override void _Ready() {
+		if (!IsMultiplayerAuthority() && !Multiplayer.IsServer()) {
+			_actorPlayer.CompMultiplayer.LocalPlayerSynchronizer.Remove();
+		}
 		/*
 		 * With this return early, physics process is only called when it has authority.
 		 * This is set in ActorPlayer PlayerPeerId property.
