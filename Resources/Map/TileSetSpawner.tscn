@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7xnopoigy3vw"]
+[gd_scene load_steps=12 format=3 uid="uid://b7xnopoigy3vw"]
+
+[ext_resource type="Shader" uid="uid://hhs0cw578pji" path="res://Resources/Spawner/ActorPlayerSpawner.tres" id="1_r5pax"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q3dw"]
 albedo_color = Color(0.92549, 0.458824, 0.32549, 1)
@@ -25,6 +27,15 @@ albedo_color = Color(0.984314, 0.545098, 0.266667, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_hb60g"]
 material = SubResource("StandardMaterial3D_mvsev")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5d5fa"]
+render_priority = 0
+shader = ExtResource("1_r5pax")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hb60g"]
+material = SubResource("ShaderMaterial_5d5fa")
+radius = 0.75
+height = 1.5
+
 [node name="TileSetSpawner" type="Node3D"]
 
 [node name="Wall" type="MeshInstance3D" parent="."]
@@ -41,3 +52,7 @@ mesh = SubResource("CylinderMesh_r5pax")
 [node name="PowerCubeBox" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 mesh = SubResource("BoxMesh_hb60g")
+
+[node name="ActorPlayerSpawner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+mesh = SubResource("SphereMesh_hb60g")

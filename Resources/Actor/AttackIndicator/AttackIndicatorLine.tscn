@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bieyx6oarmors" path="res://Scripts/Game/Actor/AttackIndicator/ActorAttackIndicatorLine.cs" id="1_u1nai"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1nai"]
+render_priority = 1
 transparency = 1
 cull_mode = 2
 shading_mode = 0

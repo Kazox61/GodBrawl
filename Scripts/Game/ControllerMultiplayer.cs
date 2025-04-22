@@ -17,7 +17,7 @@ public partial class ControllerMultiplayer : Node {
 	
 	private HashSet<ActorPlayer> _actorPlayers = [];
 	
-	private List<Node3D> _actorPlayerSpawners = [];
+	private HashSet<Vector3> _actorPlayerSpawnPositions = [];
 
 	public override void _EnterTree() {
 		Instance = this;
@@ -43,8 +43,10 @@ public partial class ControllerMultiplayer : Node {
 		Multiplayer.PeerConnected += OnClientConnected;
 		Multiplayer.PeerDisconnected += OnClientDisconnected;
 		
-		_actorPlayerSpawners = _map.ActorPlayerSpawners.ToList();
-		Callable.From(_map.GridMapSpawner.ReplaceGridTiles).CallDeferred();
+		Callable.From(() => {
+			_map.GridMapSpawner.ReplaceGridTiles();
+			_actorPlayerSpawnPositions = _map.GridMapSpawner.SpawnPositions;
+		}).CallDeferred();
 	}
 	
 	private void StartClient() {
@@ -64,10 +66,10 @@ public partial class ControllerMultiplayer : Node {
 		
 		_spawnParent.AddChild(actorPlayer, true);
 
-		var spawner = _actorPlayerSpawners.GetRandomElement();
-		_actorPlayerSpawners.Remove(spawner);
+		var spawnPosition = _actorPlayerSpawnPositions.GetRandomElement();
+		_actorPlayerSpawnPositions.Remove(spawnPosition);
 		
-		actorPlayer.GlobalPosition = spawner.GlobalPosition;
+		actorPlayer.GlobalPosition = spawnPosition;
 		
 		_actorPlayers.Add(actorPlayer);
 	}
