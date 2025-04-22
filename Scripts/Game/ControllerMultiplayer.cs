@@ -11,15 +11,11 @@ public partial class ControllerMultiplayer : Node {
 	public static ControllerMultiplayer Instance;
 	
 	[Export] private StartConfig _startConfig;
-	[Export] private PackedScene _localPlayerPrefab;
 	[Export] private PackedScene _actorPlayerPrefab;
 	[Export] private Node3D _rootNode;
 	[Export] private Map _map;
 	
-	public readonly HashSet<LocalPlayer> LocalPlayers = [];
-	public readonly HashSet<ActorPlayer> ActorPlayers = [];
-
-	public LocalPlayer ControlledLocalPlayer;
+	private List<ActorPlayer> _actorPlayers = [];
 	
 	private List<Node3D> _actorPlayerSpawners = [];
 
@@ -59,22 +55,18 @@ public partial class ControllerMultiplayer : Node {
 	}
 	
 	private void OnClientConnected(long peer) {
-		var localPlayer = _localPlayerPrefab.Instantiate<LocalPlayer>();
-		localPlayer.PeerId = (int)peer;
-		
-		_rootNode.AddChild(localPlayer, true);
-		
 		var actorPlayer = _actorPlayerPrefab.Instantiate<ActorPlayer>();
-		actorPlayer.PlayerPeerId = (int)peer;
+		actorPlayer.CompMultiplayer.PlayerPeerId = (int)peer;
 		actorPlayer.CompVisibility.InitializeVisibilityFilter();
 		
 		_rootNode.AddChild(actorPlayer, true);
-		actorPlayer.AssignLocalPlayer();
 
 		var spawner = _actorPlayerSpawners.GetRandomElement();
 		_actorPlayerSpawners.Remove(spawner);
 		
 		actorPlayer.GlobalPosition = spawner.GlobalPosition;
+		
+		_actorPlayers.Add(actorPlayer);
 	}
 	
 	private void OnClientDisconnected(long peer) { }

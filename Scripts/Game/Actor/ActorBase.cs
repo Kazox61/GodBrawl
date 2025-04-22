@@ -9,17 +9,8 @@ public partial class ActorBase : CharacterBody3D {
 	[Export] public Node3D Body;
 	[Export] public Area3D BodyArea;
 	
+	[Export] public ActorCompMultiplayer CompMultiplayer;
 	[Export] public ActorCompVisibility CompVisibility;
-
-	protected int _playerPeerId;
-	public virtual int PlayerPeerId {
-		get => _playerPeerId;
-		set {
-			_playerPeerId = value;
-			
-			GD.Print($"Set ActorBase PeerId: {_playerPeerId}, Controlled: {ControllerMultiplayer.Instance.ControlledLocalPlayer.PeerId}");
-		}
-	}
 	
 	// This can be set from outside to move the Actor
 	public Vector2 MoveDirection;
