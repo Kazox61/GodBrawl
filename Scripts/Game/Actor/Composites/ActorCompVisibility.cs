@@ -32,10 +32,8 @@ public partial class ActorCompVisibility : Node3D {
 	public override void _Ready() {
 		if (_compMultiplayer.ControllerLocalPlayer.IsMultiplayerAuthority()) {
 			_closeArea.AreaEntered += (area) => {
-				GD.Print($"Entered Area: {area.GetParent().GetParent().Name}");
 				if (area.IsInGroup("Bush")) {
-					GD.Print("Is in group Bush");
-					var mesh = (CylinderMesh)area.GetParent<MeshInstance3D>().GetMesh();
+					var mesh = (BoxMesh)area.GetParent<MeshInstance3D>().GetMesh();
 					var mat = (StandardMaterial3D)mesh.Material;
 					var color = mat.AlbedoColor;
 					color.A = 0.2f;
@@ -45,7 +43,7 @@ public partial class ActorCompVisibility : Node3D {
 
 			_closeArea.AreaExited += (area) => {
 				if (area.IsInGroup("Bush")) {
-					var mesh = (CylinderMesh)area.GetParent<MeshInstance3D>().GetMesh();
+					var mesh = (BoxMesh)area.GetParent<MeshInstance3D>().GetMesh();
 					var mat = (StandardMaterial3D)mesh.Material;
 					var color = mat.AlbedoColor;
 					color.A = 1f;

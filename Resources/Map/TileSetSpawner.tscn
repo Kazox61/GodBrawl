@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7xnopoigy3vw"]
+[gd_scene load_steps=9 format=3 uid="uid://b7xnopoigy3vw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q3dw"]
 albedo_color = Color(0.92549, 0.458824, 0.32549, 1)
@@ -6,26 +6,38 @@ albedo_color = Color(0.92549, 0.458824, 0.32549, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_3q3dw"]
 material = SubResource("StandardMaterial3D_3q3dw")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_futla"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_futla"]
 albedo_color = Color(1, 0.827451, 0.388235, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_jggad"]
+[sub_resource type="BoxMesh" id="BoxMesh_tc6on"]
 material = SubResource("StandardMaterial3D_futla")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6on"]
+albedo_color = Color(0.678431, 0.411765, 0.235294, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r5pax"]
+material = SubResource("StandardMaterial3D_tc6on")
 height = 1.0
 
-[node name="TileSet" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsev"]
+albedo_color = Color(0.984314, 0.545098, 0.266667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hb60g"]
+material = SubResource("StandardMaterial3D_mvsev")
+
+[node name="TileSetSpawner" type="Node3D"]
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3q3dw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_futla")
-
 [node name="Bush" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-mesh = SubResource("CylinderMesh_jggad")
+mesh = SubResource("BoxMesh_tc6on")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+mesh = SubResource("CylinderMesh_r5pax")
+
+[node name="PowerCubeBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+mesh = SubResource("BoxMesh_hb60g")

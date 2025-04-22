@@ -4,32 +4,33 @@ using Godot.Collections;
 namespace GodBrawl.Game;
 
 public partial class GridMapSpawner : GridMap {
-	[Export] public Dictionary<int, PackedScene> TileToSceneMappings = new();
+	[Export] public Dictionary<int, SpawnConfig> TileToSceneMappings = new();
+	[Export] private Node _spawnParent;
 
-	public override void _Ready() {
-		ReplaceGridTiles();
-	}
-
-	private void ReplaceGridTiles() {
+	public void ReplaceGridTiles() {
 		foreach (var cellPos in GetUsedCells()) {
 			var tileId = GetCellItem(cellPos);
 
-			if (!TileToSceneMappings.TryGetValue(tileId, out PackedScene prefab)) {
+			if (!TileToSceneMappings.TryGetValue(tileId, out var spawnConfig)) {
 				continue;
 			}
 
+			SetCellItem(cellPos, -1);
+			
+			if (GD.Randf() > spawnConfig.SpawnProbability) {
+				continue;
+			}
+			
 			var worldPos = MapToLocal(cellPos);
 
-			var instance = prefab.Instantiate<Node3D>();
+			var instance = spawnConfig.Prefab.Instantiate<Node3D>();
 			if (instance == null) {
 				continue;
 			}
 
-			AddChild(instance);
+			_spawnParent.AddChild(instance, true);
 
 			instance.GlobalPosition = worldPos;
-
-			SetCellItem(cellPos, -1);
 		}
 	}
 }

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnx85qkr3v6x1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q3dw"]
+albedo_color = Color(0.92549, 0.458824, 0.32549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wpah7"]
+material = SubResource("StandardMaterial3D_3q3dw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wpah7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wpah7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[node name="Bush" type="Node3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_wpah7")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" groups=["Bush"]]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
+shape = SubResource("BoxShape3D_wpah7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wpah7")

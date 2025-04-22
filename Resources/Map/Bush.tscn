@@ -1,23 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca707t4h8da56"]
+[gd_scene load_steps=5 format=3 uid="uid://ca707t4h8da56"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsoxc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_futla"]
 resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(1, 0.827451, 0.388235, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_nij8s"]
+[sub_resource type="BoxMesh" id="BoxMesh_si8fc"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_jsoxc")
-height = 1.0
+material = SubResource("StandardMaterial3D_futla")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j1dda"]
-size = Vector3(0.6, 1, 0.6)
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_si8fc"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
 
 [node name="Bush" type="Node3D"]
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CylinderMesh_nij8s")
+mesh = SubResource("BoxMesh_si8fc")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="Mesh" groups=["Bush"]]
@@ -25,3 +29,6 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Area3D"]
 shape = SubResource("BoxShape3D_j1dda")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_si8fc")

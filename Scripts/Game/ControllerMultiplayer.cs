@@ -12,10 +12,10 @@ public partial class ControllerMultiplayer : Node {
 	
 	[Export] private StartConfig _startConfig;
 	[Export] private PackedScene _actorPlayerPrefab;
-	[Export] private Node3D _rootNode;
+	[Export] private Node3D _spawnParent;
 	[Export] private Map _map;
 	
-	private List<ActorPlayer> _actorPlayers = [];
+	private HashSet<ActorPlayer> _actorPlayers = [];
 	
 	private List<Node3D> _actorPlayerSpawners = [];
 
@@ -44,6 +44,7 @@ public partial class ControllerMultiplayer : Node {
 		Multiplayer.PeerDisconnected += OnClientDisconnected;
 		
 		_actorPlayerSpawners = _map.ActorPlayerSpawners.ToList();
+		Callable.From(_map.GridMapSpawner.ReplaceGridTiles).CallDeferred();
 	}
 	
 	private void StartClient() {
@@ -52,6 +53,8 @@ public partial class ControllerMultiplayer : Node {
 		peer.CreateClient(_startConfig.Ip, _startConfig.Port);
 		
 		Multiplayer.MultiplayerPeer = peer;
+		
+		Callable.From(_map.GridMapSpawner.Remove).CallDeferred();
 	}
 	
 	private void OnClientConnected(long peer) {
@@ -59,7 +62,7 @@ public partial class ControllerMultiplayer : Node {
 		actorPlayer.CompMultiplayer.PlayerPeerId = (int)peer;
 		actorPlayer.CompVisibility.InitializeVisibilityFilter();
 		
-		_rootNode.AddChild(actorPlayer, true);
+		_spawnParent.AddChild(actorPlayer, true);
 
 		var spawner = _actorPlayerSpawners.GetRandomElement();
 		_actorPlayerSpawners.Remove(spawner);
