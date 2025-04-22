@@ -1,10 +1,12 @@
-[gd_scene load_steps=55 format=3 uid="uid://cy36aygvs66pn"]
+[gd_scene load_steps=58 format=3 uid="uid://cy36aygvs66pn"]
 
 [ext_resource type="PackedScene" uid="uid://kod0awm1ha4o" path="res://addons/gdquest_gobot/model/gobot.glb" id="1_qg1mb"]
 [ext_resource type="Script" uid="uid://1fm5cmpm2rhj" path="res://addons/gdquest_gobot/gobot_skin.gd" id="1_rwke8"]
 [ext_resource type="Texture2D" uid="uid://cfdf62ci74tew" path="res://addons/gdquest_gobot/textures/closed_eyes.png" id="3_atmtp"]
 [ext_resource type="Texture2D" uid="uid://dq675fmt1rg8c" path="res://addons/gdquest_gobot/textures/open_eye.png" id="3_aysq5"]
 [ext_resource type="Material" uid="uid://div0enqs04w5j" path="res://addons/gdquest_gobot/materials/eye_mat.tres" id="4_p2r8e"]
+[ext_resource type="Shader" uid="uid://n1durhfruu6c" path="res://Resources/Shader/BaseToonShader.gdshader" id="5_x50t6"]
+[ext_resource type="Texture2D" uid="uid://bt5o0sr6peltq" path="res://addons/gdquest_gobot/model/gobot_gobot_diffuse.png" id="6_ge76d"]
 [ext_resource type="AnimationLibrary" uid="uid://k45w5evgjbtp" path="res://addons/gdquest_gobot/model/custom/custom_lib.res" id="6_vjupt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4001"]
@@ -13,6 +15,18 @@ transparency = 1
 albedo_color = Color(0.972549, 0.27451, 0, 0)
 emission_enabled = true
 emission = Color(0.972549, 0.27451, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhg17"]
+render_priority = 0
+shader = ExtResource("5_x50t6")
+shader_parameter/albedo_sampler = ExtResource("6_ge76d")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/emission_color = Color(0, 0, 0, 0)
+shader_parameter/emission_intensity = 0.0
+shader_parameter/shadow_tint = Color(1, 1, 1, 0.639216)
+shader_parameter/rim_light_size = 0.4
+shader_parameter/rim_light_intensity = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5nav"]
 resource_local_to_scene = true
@@ -2108,14 +2122,14 @@ bones/0/position = Vector3(0.125361, 0.0989139, 0.0728901)
 bones/0/rotation = Quaternion(0.772549, 0.107691, -0.136221, 0.610749)
 bones/1/position = Vector3(-0.109875, 0.0989111, -0.0510765)
 bones/1/rotation = Quaternion(0.679368, -0.310085, 0.392234, 0.537083)
-bones/2/position = Vector3(0, 0.358768, 0)
-bones/2/rotation = Quaternion(0.0697386, 0.0225347, -0.00157578, 0.99731)
-bones/3/rotation = Quaternion(1, -5.77672e-11, -7.50259e-08, 3.72812e-09)
-bones/4/rotation = Quaternion(-0.43602, -0.142092, -0.040033, 0.887747)
-bones/5/rotation = Quaternion(0.282548, 1.09106e-06, -9.64434e-06, 0.959253)
-bones/6/rotation = Quaternion(-0.192494, 0.55183, 0.20429, 0.7853)
-bones/7/rotation = Quaternion(0.454898, -1.02195e-06, 1.55752e-05, 0.890544)
-bones/8/rotation = Quaternion(-0.622489, -0.282778, -0.682687, 0.257843)
+bones/2/position = Vector3(0, 0.356288, 0)
+bones/2/rotation = Quaternion(0.0697519, -0.0113472, 0.000793478, 0.9975)
+bones/3/rotation = Quaternion(1, 2.89325e-11, -7.63091e-08, 9.12587e-10)
+bones/4/rotation = Quaternion(-0.459505, -0.173102, -0.0592079, 0.869129)
+bones/5/rotation = Quaternion(0.351162, 1.05604e-06, -1.20003e-05, 0.936315)
+bones/6/rotation = Quaternion(-0.233701, 0.514205, 0.20375, 0.799664)
+bones/7/rotation = Quaternion(0.487842, -9.87241e-07, 1.66933e-05, 0.872932)
+bones/8/rotation = Quaternion(-0.708624, -0.245543, -0.592795, 0.293521)
 bones/9/rotation = Quaternion(2.16937e-07, 5.35541e-07, -0.395029, 0.918669)
 bones/10/rotation = Quaternion(-0.289732, -0.637458, -0.217438, 0.680017)
 bones/11/rotation = Quaternion(0.487906, -0.0174399, 0.00854542, 0.87268)
@@ -2123,7 +2137,7 @@ bones/12/rotation = Quaternion(-0.371224, -0.00197697, 0.00585366, 0.928523)
 bones/13/rotation = Quaternion(-0.502333, 1.50049e-05, -2.85054e-05, 0.864674)
 bones/14/rotation = Quaternion(-0.371224, -0.00197698, 0.00585369, 0.928523)
 bones/15/rotation = Quaternion(-0.502333, 1.49999e-05, -2.85068e-05, 0.864674)
-bones/16/rotation = Quaternion(-0.691664, 0.253705, 0.612498, 0.286496)
+bones/16/rotation = Quaternion(-0.603034, 0.289921, 0.699931, 0.249784)
 bones/17/rotation = Quaternion(2.27203e-07, -5.84749e-07, 0.395029, 0.918669)
 bones/18/rotation = Quaternion(-0.289732, 0.637458, 0.217438, 0.680017)
 bones/19/rotation = Quaternion(0.487906, 0.0174399, -0.00854541, 0.87268)
@@ -2136,6 +2150,7 @@ bones/24/rotation = Quaternion(-0.0697565, 4.58965e-08, 3.0345e-09, 0.997564)
 
 [node name="Gobot" parent="gobot/Armature/Skeleton3D" index="0"]
 material_overlay = SubResource("StandardMaterial3D_t4001")
+surface_material_override/0 = SubResource("ShaderMaterial_mhg17")
 surface_material_override/1 = SubResource("StandardMaterial3D_f5nav")
 surface_material_override/2 = ExtResource("4_p2r8e")
 
