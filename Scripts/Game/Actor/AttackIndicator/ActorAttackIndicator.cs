@@ -56,10 +56,7 @@ public abstract partial class ActorAttackIndicator : MeshInstance3D {
 		}
 	}
 
-	public virtual void HandleInput(Vector2 input) {
-		var angleRad = Mathf.Atan2(input.X, input.Y);
-		Rotation = new Vector3(0, angleRad, 0);
-	}
+	public virtual void HandleInput(Vector2 input) { }
 
 	protected ActorAttackIndicator ResetMesh() {
 		if (Mesh is ImmediateMesh immediateMesh) {

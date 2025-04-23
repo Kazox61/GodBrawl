@@ -4,6 +4,13 @@ namespace GodBrawl.Game.Actor;
 
 [Tool]
 public partial class ActorAttackIndicatorLine : ActorAttackIndicator {
+	[Export] private Node3D _pivot;
+	
+	public override void HandleInput(Vector2 input) {
+		var angleRad = Mathf.Atan2(input.X, input.Y);
+		_pivot.Rotation = new Vector3(0, angleRad, 0);
+	}
+	
 	protected override ActorAttackIndicator Update() {
 		ResetMesh();
 

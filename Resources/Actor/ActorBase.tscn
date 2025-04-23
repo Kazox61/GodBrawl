@@ -57,7 +57,7 @@ _compMultiplayer = NodePath("../CompMultiplayer")
 _closeArea = NodePath("CloseArea")
 
 [node name="CloseArea" type="Area3D" parent="Composites/CompVisibility"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Composites/CompVisibility/CloseArea"]
