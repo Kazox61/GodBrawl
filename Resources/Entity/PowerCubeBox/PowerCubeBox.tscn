@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdx6nax2nbd7h"]
+[gd_scene load_steps=6 format=3 uid="uid://cdx6nax2nbd7h"]
+
+[ext_resource type="PackedScene" uid="uid://dqte0gtb5i5iq" path="res://Resources/Entity/PowerCubeBox/Healthbar.tscn" id="1_1ymwv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsev"]
 albedo_color = Color(0.984314, 0.545098, 0.266667, 1)
@@ -29,6 +31,8 @@ collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_b0ni1")
+
+[node name="Healthbar" parent="." instance=ExtResource("1_1ymwv")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_b0ni1")

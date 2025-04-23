@@ -86,11 +86,11 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 80
 text = "Flori"
 
 [node name="Spacer" type="Control" parent="Sprite3D/SubViewport/Control/VBoxContainer"]
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="Progressbar" type="Panel" parent="Sprite3D/SubViewport/Control/VBoxContainer" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
@@ -161,17 +161,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -74.0
-offset_top = -40.0
-offset_right = 74.0
-offset_bottom = 30.0
+offset_left = -84.5
+offset_top = -34.0
+offset_right = 84.5
+offset_bottom = 45.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 64
 text = "7400"
 horizontal_alignment = 1
 vertical_alignment = 1

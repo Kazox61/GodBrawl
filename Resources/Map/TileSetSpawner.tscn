@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b7xnopoigy3vw"]
 
-[ext_resource type="Shader" uid="uid://hhs0cw578pji" path="res://Resources/Spawner/ActorPlayerSpawner.tres" id="1_r5pax"]
+[ext_resource type="Shader" uid="uid://hhs0cw578pji" path="res://Resources/Shader/ActorPlayerSpawner.tres" id="1_r5pax"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q3dw"]
 albedo_color = Color(0.92549, 0.458824, 0.32549, 1)

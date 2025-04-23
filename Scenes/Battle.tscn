@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8uthocglwpnk"]
+[gd_scene load_steps=17 format=3 uid="uid://c8uthocglwpnk"]
 
 [ext_resource type="PackedScene" uid="uid://doi7k3jdn3xn0" path="res://Resources/Map/TestMap.tscn" id="1_vr6xi"]
 [ext_resource type="PackedScene" uid="uid://bbw8cq7e8ygo4" path="res://Resources/Actor/ActorPlayer.tscn" id="2_2h7oj"]
 [ext_resource type="Script" uid="uid://l08ys78jw6jt" path="res://Scripts/Game/ControllerMultiplayer.cs" id="2_vr6xi"]
 [ext_resource type="Resource" uid="uid://bnd2gncgto8ot" path="res://Resources/Configs/StartConfig.tres" id="3_2h7oj"]
+[ext_resource type="Script" uid="uid://bqjmjx87l2hrr" path="res://Scripts/Game/DamageZone.cs" id="5_p46lj"]
+[ext_resource type="Script" uid="uid://b5k7lauosxknc" path="res://Scripts/Game/ControllerDamageZone.cs" id="6_8teo4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tn1lc"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +18,35 @@ sky_material = SubResource("ProceduralSkyMaterial_tn1lc")
 background_mode = 2
 sky = SubResource("Sky_ae86l")
 tonemap_mode = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8teo4"]
+properties/0/path = NodePath(".:ExpandSize")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1samx"]
+resource_local_to_scene = true
+size = Vector3(74, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8teo4"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(0.52549, 0.839216, 0.52549, 0.74902)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8teo4"]
+material = SubResource("StandardMaterial3D_8teo4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8teo4"]
+resource_local_to_scene = true
+size = Vector3(74, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c5ef4"]
+resource_local_to_scene = true
+size = Vector3(1, 3, 74)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6yjxy"]
+resource_local_to_scene = true
+size = Vector3(1, 3, 74)
 
 [node name="Battle" type="Node3D"]
 
@@ -35,7 +66,7 @@ shadow_blur = 1.25
 _spawnParent = NodePath("../..")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4", "uid://ca707t4h8da56", "uid://bnx85qkr3v6x1", "uid://c8qujbmphb1qk", "uid://cdx6nax2nbd7h")
+_spawnable_scenes = PackedStringArray("uid://bbw8cq7e8ygo4", "uid://bnx85qkr3v6x1", "uid://ca707t4h8da56", "uid://c8qujbmphb1qk", "uid://cdx6nax2nbd7h")
 spawn_path = NodePath("..")
 
 [node name="ControllerMultiplayer" type="Node" parent="." node_paths=PackedStringArray("_spawnParent", "_map")]
@@ -62,5 +93,76 @@ theme_override_constants/outline_size = 20
 theme_override_constants/shadow_outline_size = 20
 theme_override_font_sizes/font_size = 48
 text = "Brawlers left: 10"
+
+[node name="ControllerDamageZone" type="Node" parent="." node_paths=PackedStringArray("DamageZones")]
+script = ExtResource("6_8teo4")
+DamageZones = [NodePath("../DamageZone"), NodePath("../DamageZone2"), NodePath("../DamageZone3"), NodePath("../DamageZone4")]
+Height = 3.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ControllerDamageZone"]
+replication_config = SubResource("SceneReplicationConfig_8teo4")
+
+[node name="DamageZone" type="Area3D" parent="." node_paths=PackedStringArray("_collisionShape", "_debugMesh")]
+script = ExtResource("5_p46lj")
+_collisionShape = NodePath("CollisionShape3D")
+_boxShape = SubResource("BoxShape3D_1samx")
+_debugMesh = NodePath("DebugMesh")
+Height = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36.5)
+shape = SubResource("BoxShape3D_1samx")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="DamageZone"]
+transform = Transform3D(74, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, -36.5)
+mesh = SubResource("BoxMesh_8teo4")
+
+[node name="DamageZone2" type="Area3D" parent="." node_paths=PackedStringArray("_collisionShape", "_debugMesh")]
+script = ExtResource("5_p46lj")
+_collisionShape = NodePath("CollisionShape3D")
+_boxShape = SubResource("BoxShape3D_8teo4")
+_debugMesh = NodePath("DebugMesh")
+ExpandDirection = 1
+Height = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageZone2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36.5)
+shape = SubResource("BoxShape3D_8teo4")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="DamageZone2"]
+transform = Transform3D(74, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 36.5)
+mesh = SubResource("BoxMesh_8teo4")
+
+[node name="DamageZone3" type="Area3D" parent="." node_paths=PackedStringArray("_collisionShape", "_debugMesh")]
+script = ExtResource("5_p46lj")
+_collisionShape = NodePath("CollisionShape3D")
+_boxShape = SubResource("BoxShape3D_c5ef4")
+_debugMesh = NodePath("DebugMesh")
+ExpandDirection = 2
+Height = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageZone3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5, 0, 0)
+shape = SubResource("BoxShape3D_c5ef4")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="DamageZone3"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 74, -36.5, 0, 0)
+mesh = SubResource("BoxMesh_8teo4")
+
+[node name="DamageZone4" type="Area3D" parent="." node_paths=PackedStringArray("_collisionShape", "_debugMesh")]
+script = ExtResource("5_p46lj")
+_collisionShape = NodePath("CollisionShape3D")
+_boxShape = SubResource("BoxShape3D_6yjxy")
+_debugMesh = NodePath("DebugMesh")
+ExpandDirection = 3
+Height = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageZone4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 0, 0)
+shape = SubResource("BoxShape3D_6yjxy")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="DamageZone4"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 74, 36.5, 0, 0)
+mesh = SubResource("BoxMesh_8teo4")
 
 [editable path="TestMap"]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cyax0umtnh10d" path="res://Scripts/Game/Actor/ActorBase.cs" id="1_p2f2x"]
 [ext_resource type="Script" uid="uid://r4et3akid1d1" path="res://Scripts/Game/Actor/Composites/ActorCompMultiplayer.cs" id="3_qg27i"]
 [ext_resource type="Script" uid="uid://c7653ujifou7c" path="res://Scripts/Game/Actor/Composites/ActorCompVisibility.cs" id="4_2g8rh"]
-[ext_resource type="PackedScene" uid="uid://csl0s3aen0dk0" path="res://Resources/Actor/StatusDisplay.tscn" id="5_2g8rh"]
+[ext_resource type="PackedScene" uid="uid://csl0s3aen0dk0" path="res://Resources/Actor/StatusDisplay/StatusDisplay.tscn" id="5_2g8rh"]
 [ext_resource type="Script" uid="uid://bxoents840sba" path="res://Scripts/Game/Actor/ActorMovement.cs" id="6_27fxy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2f2x"]

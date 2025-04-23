@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0wpwqxk2o2jh"]
+
+[ext_resource type="Texture2D" uid="uid://7mq281h4pi05" path="res://Resources/Map/PoisionCloud/PoisonCloud.png" id="1_igehn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igehn"]
+atlas = ExtResource("1_igehn")
+region = Rect2(0, 0, 1500, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5gei"]
+atlas = ExtResource("1_igehn")
+region = Rect2(1500, 0, 1500, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1clu"]
+atlas = ExtResource("1_igehn")
+region = Rect2(3000, 0, 1500, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpeii"]
+atlas = ExtResource("1_igehn")
+region = Rect2(4500, 0, 1500, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04fyv"]
+atlas = ExtResource("1_igehn")
+region = Rect2(6000, 0, 1500, 1500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sexiq"]
+atlas = ExtResource("1_igehn")
+region = Rect2(7500, 0, 1500, 1500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rer8o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igehn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5gei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1clu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpeii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04fyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sexiq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="PoisonCloud" type="AnimatedSprite3D"]
+pixel_size = 0.004
+billboard = 1
+no_depth_test = true
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_rer8o")
+autoplay = "default"
+frame_progress = 0.0582013
