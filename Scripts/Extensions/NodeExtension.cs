@@ -20,4 +20,17 @@ public static class NodeExtension {
 		node.GetParent().RemoveChild(node);
 		node.QueueFree();
 	}
+	public static T FindParentOfType<T>(this Node root) where T : Node {
+		var current = root;
+
+		while (current != null) {
+			var parent = current.GetParentOrNull<T>();
+			if (parent != null)
+				return parent;
+
+			current = current.GetParent();
+		}
+
+		return null;
+	}
 }

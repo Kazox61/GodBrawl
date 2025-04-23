@@ -14,14 +14,6 @@ properties/0/replication_mode = 1
 [node name="ActorPlayer" instance=ExtResource("1_yge73")]
 script = ExtResource("2_seuuj")
 
-[node name="CompMultiplayer" parent="Composites" index="0" node_paths=PackedStringArray("LocalPlayerSynchronizer", "ControllerLocalPlayer")]
-LocalPlayerSynchronizer = NodePath("LocalPlayerSynchronizer")
-ControllerLocalPlayer = NodePath("../../ControllerLocalPlayer")
-
-[node name="LocalPlayerSynchronizer" type="MultiplayerSynchronizer" parent="Composites/CompMultiplayer" index="1"]
-root_path = NodePath("../../..")
-replication_config = SubResource("SceneReplicationConfig_seuuj")
-
 [node name="ControllerLocalPlayer" type="Node3D" parent="." index="3" node_paths=PackedStringArray("_actorPlayer", "_camera", "_attackIndicator")]
 script = ExtResource("3_5e6l1")
 _actorPlayer = NodePath("..")
@@ -45,3 +37,11 @@ visible = false
 skeleton = NodePath("../..")
 _pivot = NodePath("..")
 Active = false
+
+[node name="CompMultiplayer" parent="Composites" index="0" node_paths=PackedStringArray("LocalPlayerSynchronizer", "ControllerLocalPlayer")]
+LocalPlayerSynchronizer = NodePath("LocalPlayerSynchronizer")
+ControllerLocalPlayer = NodePath("../../ControllerLocalPlayer")
+
+[node name="LocalPlayerSynchronizer" type="MultiplayerSynchronizer" parent="Composites/CompMultiplayer" index="1"]
+root_path = NodePath("../../..")
+replication_config = SubResource("SceneReplicationConfig_seuuj")

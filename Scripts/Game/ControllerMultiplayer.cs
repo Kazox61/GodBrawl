@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using GodBrawl.Config;
-using GodBrawl.Extensions;
 using GodBrawl.Game.Actor;
 using Godot;
 

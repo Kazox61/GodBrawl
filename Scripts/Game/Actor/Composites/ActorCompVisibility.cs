@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using GodBrawl.Extensions;
 using Godot;
 
 namespace GodBrawl.Game.Actor;
@@ -11,10 +10,10 @@ namespace GodBrawl.Game.Actor;
  * if not, the visibility filter will not work as expected
  */
 public partial class ActorCompVisibility : Node3D {
-	[Export] private ActorBase _actor;
 	[Export] private ActorCompMultiplayer _compMultiplayer;
 	[Export] private Area3D _closeArea;
-
+	
+	private ActorBase _actor;
 	
 	private readonly HashSet<ActorPlayer> _closeActors = [];
 	private readonly HashSet<Area3D> _bushAreas = [];
@@ -28,6 +27,10 @@ public partial class ActorCompVisibility : Node3D {
 		
 		return !InsideBush || _closeActors.Any(actor => actor.CompMultiplayer.PlayerPeerId == peerId);
  	});
+
+	public override void _EnterTree() {
+		_actor = this.FindParentOfType<ActorBase>();
+	}
 
 	public override void _Ready() {
 		if (_compMultiplayer.ControllerLocalPlayer.IsMultiplayerAuthority()) {

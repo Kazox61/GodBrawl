@@ -1,4 +1,3 @@
-using GodBrawl.Extensions;
 using GodBrawl.Game.UserInterface;
 using Godot;
 
@@ -37,7 +36,7 @@ public partial class ControllerLocalPlayer : Node3D {
 	public override void _PhysicsProcess(double delta) {
 		// This is run only on the server to update the MoveDirection of the ActorPlayer.
 		if (Multiplayer.MultiplayerPeer != null && Multiplayer.IsServer()) {
-			_actorPlayer.MoveDirection = MoveDirection.Normalized();
+			_actorPlayer.Movement.MoveDirection = MoveDirection.Normalized();
 		}
 		
 		/*
