@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8dwetmy0e0be"]
+[gd_scene load_steps=10 format=3 uid="uid://c8dwetmy0e0be"]
 
 [ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://addons/gdquest_gobot/gobot_skin.tscn" id="1_5r1j0"]
 [ext_resource type="Script" uid="uid://cyax0umtnh10d" path="res://Scripts/Game/Actor/ActorBase.cs" id="1_p2f2x"]
@@ -8,10 +8,8 @@
 [ext_resource type="Script" uid="uid://bxoents840sba" path="res://Scripts/Game/Actor/ActorMovement.cs" id="6_27fxy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2f2x"]
-height = 1.35
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_qg27i"]
 radius = 0.4
+height = 1.35
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ui7lw"]
 properties/0/path = NodePath(".:position")
@@ -31,7 +29,7 @@ radius = 1.5
 collision_layer = 2
 script = ExtResource("1_p2f2x")
 Body = NodePath("GobotSkin")
-BodyArea = NodePath("BodyArea")
+BodyArea = NodePath("")
 CompMultiplayer = NodePath("Composites/CompMultiplayer")
 CompVisibility = NodePath("Composites/CompVisibility")
 Movement = NodePath("Movement")
@@ -39,13 +37,6 @@ Movement = NodePath("Movement")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)
 shape = SubResource("CapsuleShape3D_p2f2x")
-
-[node name="BodyArea" type="Area3D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-shape = SubResource("SphereShape3D_qg27i")
 
 [node name="GobotSkin" parent="." instance=ExtResource("1_5r1j0")]
 

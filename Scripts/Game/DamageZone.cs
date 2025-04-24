@@ -125,8 +125,6 @@ public partial class DamageZone : Area3D {
 			return;
 		}
 		
-		GD.Print($"Height: {Height}, MapSize: {_mapSize}, ExpandSize: {_expandSize}");
-		
 		var size = new Vector3(1f, Height, 1f);
 		var position = new Vector3();
 

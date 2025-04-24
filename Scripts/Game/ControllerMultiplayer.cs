@@ -8,9 +8,10 @@ namespace GodBrawl.Game;
 public partial class ControllerMultiplayer : Node {
 	public static ControllerMultiplayer Instance;
 	
+	[Export] public Node3D SpawnParent;
+	
 	[Export] private StartConfig _startConfig;
 	[Export] private PackedScene _actorPlayerPrefab;
-	[Export] private Node3D _spawnParent;
 	[Export] private Map _map;
 	
 	private HashSet<ActorPlayer> _actorPlayers = [];
@@ -62,7 +63,7 @@ public partial class ControllerMultiplayer : Node {
 		actorPlayer.CompMultiplayer.PlayerPeerId = (int)peer;
 		actorPlayer.CompVisibility.InitializeVisibilityFilter();
 		
-		_spawnParent.AddChild(actorPlayer, true);
+		SpawnParent.AddChild(actorPlayer, true);
 
 		var spawnPosition = _actorPlayerSpawnPositions.GetRandomElement();
 		_actorPlayerSpawnPositions.Remove(spawnPosition);

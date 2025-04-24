@@ -6,7 +6,6 @@ namespace GodBrawl.Game;
 
 public partial class GridMapSpawner : GridMap {
 	[Export] public Godot.Collections.Dictionary<int, SpawnConfig> TileToSceneMappings = new();
-	[Export] private Node _spawnParent;
 	[Export] private int _actorPlayerSpawnerTileId;
 
 	private readonly HashSet<Vector3> _spawnPositions = [];
@@ -39,7 +38,7 @@ public partial class GridMapSpawner : GridMap {
 				continue;
 			}
 
-			_spawnParent.AddChild(instance, true);
+			ControllerMultiplayer.Instance.SpawnParent.AddChild(instance, true);
 
 			instance.GlobalPosition = worldPos;
 		}

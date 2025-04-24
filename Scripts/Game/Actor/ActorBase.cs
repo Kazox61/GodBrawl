@@ -10,6 +10,7 @@ public partial class ActorBase : CharacterBody3D {
 	[Export] public ActorCompVisibility CompVisibility;
 
 	[Export] public ActorMovement Movement;
+	[Export] public ActorAttackBase Attack;
 	
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	private void PlayAnimation(string animationName) {

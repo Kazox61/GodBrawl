@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjal1jrk6n0hr"]
+
+[ext_resource type="PackedScene" uid="uid://bbw8cq7e8ygo4" path="res://Resources/Actor/ActorPlayer.tscn" id="1_ysm7d"]
+[ext_resource type="Script" uid="uid://c8x80c5e72c5m" path="res://Scripts/Game/Actor/Attack/SpreadAttack.cs" id="2_ceuca"]
+[ext_resource type="Script" uid="uid://nmboej237w0b" path="res://Scripts/Game/Actor/Attack/BurstSpreadConfig.cs" id="3_v3gth"]
+[ext_resource type="PackedScene" uid="uid://bnx3ehicld8wx" path="res://Resources/TestProjectile.tscn" id="4_bnljq"]
+
+[sub_resource type="Resource" id="Resource_v3gth"]
+script = ExtResource("3_v3gth")
+BurstAngle = 30.0
+ProjectileCount = 5
+metadata/_custom_type_script = "uid://nmboej237w0b"
+
+[node name="Shelly" node_paths=PackedStringArray("Attack") instance=ExtResource("1_ysm7d")]
+Attack = NodePath("SpreadAttack")
+
+[node name="BodyArea" parent="." index="1"]
+visible = true
+
+[node name="SpreadAttack" type="Node3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("2_ceuca")
+SpreadConfig = SubResource("Resource_v3gth")
+MaxDistance = 7.67
+ProjectilePrefab = ExtResource("4_bnljq")
+Debug = true

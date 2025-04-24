@@ -51,6 +51,9 @@ public partial class ControllerLocalPlayer : Node3D {
 		
 		MoveDirection = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 		AimDirection = Input.GetVector("aim_left", "aim_right", "aim_up", "aim_down");
+		
+		_actorPlayer.Attack.DebugDirection = AimDirection;
+		
 		if (AimDirection.IsZeroApprox()) {
 			_attackIndicator.Active = false;
 		}
@@ -75,6 +78,7 @@ public partial class ControllerLocalPlayer : Node3D {
 	[Rpc(CallLocal = false)]
 	private void Attack(Vector2 direction) {
 		GD.Print($"Attack with direction: {direction}");
+		_actorPlayer.Attack.TryBegin(direction);
 	}
 	
 	[Rpc(CallLocal = false)]

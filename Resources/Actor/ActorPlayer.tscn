@@ -25,7 +25,7 @@ _canvasLocalPlayerPrefab = ExtResource("4_5e6l1")
 transform = Transform3D(-1, 6.69697e-08, 5.61943e-08, 0, 0.642787, -0.766044, -8.74228e-08, -0.766044, -0.642787, 0, 1, 0)
 
 [node name="Camera3D" type="Camera3D" parent="ControllerLocalPlayer/CameraPivot" index="0"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -90)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -100)
 fov = 7.0
 
 [node name="AttackIndicatorPivot" type="Node3D" parent="ControllerLocalPlayer" index="1"]

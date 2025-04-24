@@ -59,22 +59,17 @@ public partial class ActorCompVisibility : Node3D {
 			return;
 		}
 		
-		_closeArea.AreaEntered += (area) => {
-			var enteredActor = area.GetParentOrNull<ActorPlayer>();
-			if (enteredActor == null || enteredActor == _actor) {
-				return;
+		_closeArea.BodyEntered += (body) => {
+			if (body is ActorPlayer enteredActor && enteredActor != _actor) {
+				_closeActors.Add(enteredActor);
 			}
 			
-			_closeActors.Add(enteredActor);
 		};
 		
-		_closeArea.AreaExited += (area) => {
-			var exitedActor = area.GetParentOrNull<ActorPlayer>();
-			if (exitedActor == null || exitedActor == _actor) {
-				return;
+		_closeArea.BodyExited += (body) => {
+			if (body is ActorPlayer exitedActor && exitedActor != _actor) {
+				_closeActors.Remove(exitedActor);
 			}
-			
-			_closeActors.Remove(exitedActor);
 		};
 		
 		_actor.BodyArea.AreaEntered += (area) => {
