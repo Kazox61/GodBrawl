@@ -1,3 +1,4 @@
+using GodBrawl.Game.Actor;
 using Godot;
 
 namespace GodBrawl.Game.Projectile;
@@ -8,6 +9,8 @@ public partial class ProjectileBase : Node3D {
 	private Vector3 _direction;
 	private float _maxDistance;
 	private float _speed;
+	private int _damage;
+	private ActorBase _source;
 
 	private Vector3 _destination;
 
@@ -20,10 +23,12 @@ public partial class ProjectileBase : Node3D {
 		}
 	}
 
-	public void Initialize(Vector3 direction, float maxDistance, float speed) {
+	public void Initialize(Vector3 direction, float maxDistance, float speed, int damage, ActorBase source) {
 		_direction = direction;
 		_maxDistance = maxDistance;
 		_speed = speed;
+		_damage = damage;
+		_source = source;
 		
 		_destination = GlobalPosition + direction * maxDistance;
 	}
@@ -37,10 +42,15 @@ public partial class ProjectileBase : Node3D {
 	}
 
 	private void OnAreaEntered(Area3D area) {
-		GD.Print(area.Name);
+		if (area is IAttackable attackable) {
+			attackable.ApplyDamage(_damage, _source);
+		}
 	}
 	
 	private void OnBodyEntered(Node3D body) {
-		GD.Print(body.Name);
+		if (body != _source && body is IAttackable attackable) {
+			attackable.ApplyDamage(_damage, _source);
+			Callable.From(this.Remove).CallDeferred();
+		}
 	}
 }

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://csl0s3aen0dk0"]
+[gd_scene load_steps=8 format=3 uid="uid://csl0s3aen0dk0"]
 
+[ext_resource type="Script" uid="uid://cc8f4no2u5a67" path="res://Scripts/Game/Actor/ActorStatusDisplay.cs" id="1_4paaw"]
 [ext_resource type="Script" uid="uid://k07lhfj653qs" path="res://Scripts/Game/UserInterface/Progressbar.cs" id="1_84fii"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_cneod"]
@@ -47,7 +48,10 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 16
 
-[node name="StatusDisplay" type="Node3D"]
+[node name="StatusDisplay" type="Node3D" node_paths=PackedStringArray("Healthbar", "HealthLabel")]
+script = ExtResource("1_4paaw")
+Healthbar = NodePath("Sprite3D/SubViewport/Control/VBoxContainer/Progressbar")
+HealthLabel = NodePath("Sprite3D/SubViewport/Control/VBoxContainer/Progressbar/Label")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2.5, 0)

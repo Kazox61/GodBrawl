@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8qujbmphb1qk"]
+[gd_scene load_steps=7 format=3 uid="uid://c8qujbmphb1qk"]
+
+[ext_resource type="Script" uid="uid://brntwrvgpx13f" path="res://Scripts/Game/Entity/BodyEntityAttackable.cs" id="1_n84wn"]
+[ext_resource type="Script" uid="uid://be774ll0fgqrc" path="res://Scripts/Game/Entity/EntityBase.cs" id="1_s5p2b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc6on"]
 albedo_color = Color(0.678431, 0.411765, 0.235294, 1)
@@ -16,11 +19,14 @@ properties/0/spawn = true
 properties/0/replication_mode = 0
 
 [node name="Barrel" type="Node3D"]
+script = ExtResource("1_s5p2b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_xjhla")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" node_paths=PackedStringArray("_entity")]
+script = ExtResource("1_n84wn")
+_entity = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("CylinderShape3D_xjhla")

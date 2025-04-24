@@ -95,6 +95,7 @@ text = "Brawlers left: 10"
 script = ExtResource("6_8teo4")
 DamageZones = [NodePath("../DamageZones/DamageZone"), NodePath("../DamageZones/DamageZone2"), NodePath("../DamageZones/DamageZone3"), NodePath("../DamageZones/DamageZone4")]
 Height = 3.0
+TickDuration = 5.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ControllerDamageZone"]
 replication_config = SubResource("SceneReplicationConfig_8teo4")

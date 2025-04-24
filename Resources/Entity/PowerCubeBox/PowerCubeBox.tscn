@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdx6nax2nbd7h"]
+[gd_scene load_steps=8 format=3 uid="uid://cdx6nax2nbd7h"]
 
 [ext_resource type="PackedScene" uid="uid://dqte0gtb5i5iq" path="res://Resources/Entity/PowerCubeBox/Healthbar.tscn" id="1_1ymwv"]
+[ext_resource type="Script" uid="uid://be774ll0fgqrc" path="res://Scripts/Game/Entity/EntityBase.cs" id="1_e0era"]
+[ext_resource type="Script" uid="uid://cl3jh6osxl8l4" path="res://Scripts/Game/Entity/AreaEntityAttackable.cs" id="1_xp4pc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsev"]
 albedo_color = Color(0.984314, 0.545098, 0.266667, 1)
@@ -16,11 +18,14 @@ properties/0/spawn = true
 properties/0/replication_mode = 0
 
 [node name="PowerCubeBox" type="Node3D"]
+script = ExtResource("1_e0era")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_b0ni1")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" node_paths=PackedStringArray("_entity")]
+script = ExtResource("1_xp4pc")
+_entity = NodePath("../..")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("BoxShape3D_b0ni1")

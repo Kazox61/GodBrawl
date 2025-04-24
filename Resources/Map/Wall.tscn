@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnx85qkr3v6x1"]
+[gd_scene load_steps=7 format=3 uid="uid://bnx85qkr3v6x1"]
+
+[ext_resource type="Script" uid="uid://be774ll0fgqrc" path="res://Scripts/Game/Entity/EntityBase.cs" id="1_jqkqv"]
+[ext_resource type="Script" uid="uid://brntwrvgpx13f" path="res://Scripts/Game/Entity/BodyEntityAttackable.cs" id="1_vmt15"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q3dw"]
 albedo_color = Color(0.92549, 0.458824, 0.32549, 1)
@@ -13,14 +16,17 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 0
 
-[node name="Bush" type="Node3D"]
+[node name="Wall" type="Node3D"]
+script = ExtResource("1_jqkqv")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_wpah7")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" groups=["Bush"]]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh" node_paths=PackedStringArray("_entity") groups=["Bush"]]
 collision_mask = 0
+script = ExtResource("1_vmt15")
+_entity = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/StaticBody3D"]
 shape = SubResource("BoxShape3D_wpah7")

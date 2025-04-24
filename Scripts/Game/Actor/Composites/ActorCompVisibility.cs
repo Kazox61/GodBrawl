@@ -63,7 +63,6 @@ public partial class ActorCompVisibility : Node3D {
 			if (body is ActorPlayer enteredActor && enteredActor != _actor) {
 				_closeActors.Add(enteredActor);
 			}
-			
 		};
 		
 		_closeArea.BodyExited += (body) => {
@@ -72,13 +71,13 @@ public partial class ActorCompVisibility : Node3D {
 			}
 		};
 		
-		_actor.BodyArea.AreaEntered += (area) => {
+		_actor.BodyTrigger.AreaEntered += (area) => {
 			if (area.IsInGroup("Bush")) {
 				_bushAreas.Add(area);
 			}
 		};
 		
-		_actor.BodyArea.AreaExited += (area) => {
+		_actor.BodyTrigger.AreaExited += (area) => {
 			if (area.IsInGroup("Bush")) {
 				_bushAreas.Remove(area);
 			}

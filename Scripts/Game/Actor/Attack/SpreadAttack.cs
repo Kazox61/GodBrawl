@@ -10,6 +10,7 @@ public partial class SpreadAttack : ActorAttackBase {
 	[Export] public float MaxDistance = 6f;
 	[Export] public float Speed = 10f;
 	[Export] public PackedScene ProjectilePrefab;
+	[Export] public int ProjectileDamage = 300;
 	
 	private float _timer;
 
@@ -33,7 +34,7 @@ public partial class SpreadAttack : ActorAttackBase {
 			
 			projectile.GlobalPosition = GlobalPosition + offset;
 			
-			projectile.Initialize(direction, MaxDistance, Speed);
+			projectile.Initialize(direction, MaxDistance, Speed, ProjectileDamage, Actor);
 		}
 
 		return true;
