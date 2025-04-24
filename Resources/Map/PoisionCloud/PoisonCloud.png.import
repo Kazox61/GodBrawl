@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://7mq281h4pi05"
 path.s3tc="res://.godot/imported/PoisonCloud.png-56e1b4f3bf9c4af3dbe8ed10dc3e2832.s3tc.ctex"
+path.etc2="res://.godot/imported/PoisonCloud.png-56e1b4f3bf9c4af3dbe8ed10dc3e2832.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Resources/Map/PoisionCloud/PoisonCloud.png"
-dest_files=["res://.godot/imported/PoisonCloud.png-56e1b4f3bf9c4af3dbe8ed10dc3e2832.s3tc.ctex"]
+dest_files=["res://.godot/imported/PoisonCloud.png-56e1b4f3bf9c4af3dbe8ed10dc3e2832.s3tc.ctex", "res://.godot/imported/PoisonCloud.png-56e1b4f3bf9c4af3dbe8ed10dc3e2832.etc2.ctex"]
 
 [params]
 
