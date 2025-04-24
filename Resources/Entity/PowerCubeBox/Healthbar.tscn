@@ -74,7 +74,7 @@ anchors_preset = 0
 offset_right = 1200.0
 offset_bottom = 600.0
 
-[node name="Progressbar" type="Panel" parent="Sprite3D/SubViewport/Control" node_paths=PackedStringArray("_fillContainer", "_spacer", "_backgroundUp", "_backgroundDown", "_fillUp", "_fillDown")]
+[node name="Progressbar" type="Panel" parent="Sprite3D/SubViewport/Control" node_paths=PackedStringArray("_fillContainer", "_spacer")]
 custom_minimum_size = Vector2(330, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -98,10 +98,6 @@ FillColorUp = Color(0.968627, 0.411765, 0.45098, 1)
 FillColorDown = Color(0.843137, 0.0862745, 0.156863, 1)
 _fillContainer = NodePath("InnerMask/HBoxContainer/FillContainer")
 _spacer = NodePath("InnerMask/HBoxContainer/Spacer")
-_backgroundUp = NodePath("")
-_backgroundDown = NodePath("")
-_fillUp = NodePath("")
-_fillDown = NodePath("")
 
 [node name="InnerMask" type="PanelContainer" parent="Sprite3D/SubViewport/Control/Progressbar"]
 clip_children = 1
@@ -192,6 +188,6 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
 theme_override_font_sizes/font_size = 64
-text = "7000"
+text = "7500"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -3,21 +3,21 @@
 [ext_resource type="Script" uid="uid://dttfy6lq2weo2" path="res://Scripts/Game/Map.cs" id="1_nij8s"]
 [ext_resource type="MeshLibrary" uid="uid://gh42sy5ap8jl" path="res://Resources/Map/TileSetSpawner.tres" id="1_vbc68"]
 [ext_resource type="Script" uid="uid://rc4bbkgnslo2" path="res://Scripts/Game/GridMapSpawner.cs" id="3_j1dda"]
-[ext_resource type="PackedScene" uid="uid://ca707t4h8da56" path="res://Resources/Map/Bush.tscn" id="4_j1dda"]
+[ext_resource type="PackedScene" uid="uid://mvsyt7ntphin" path="res://Resources/Entity/Wall.tscn" id="4_sbjl7"]
 [ext_resource type="Script" uid="uid://trc0leombdqe" path="res://Scripts/Game/SpawnConfig.cs" id="4_xypa0"]
-[ext_resource type="PackedScene" uid="uid://bnx85qkr3v6x1" path="res://Resources/Map/Wall.tscn" id="6_djagw"]
-[ext_resource type="PackedScene" uid="uid://c8qujbmphb1qk" path="res://Resources/Map/Barrel.tscn" id="7_sbjl7"]
-[ext_resource type="PackedScene" uid="uid://cdx6nax2nbd7h" path="res://Resources/Entity/PowerCubeBox/PowerCubeBox.tscn" id="8_tdh8m"]
+[ext_resource type="PackedScene" uid="uid://bxlthk3txe105" path="res://Resources/Entity/Bush.tscn" id="6_tdh8m"]
+[ext_resource type="PackedScene" uid="uid://dsufvcjyp5k8w" path="res://Resources/Entity/Barrel.tscn" id="7_sbjl7"]
+[ext_resource type="PackedScene" uid="uid://chpgroxi3owar" path="res://Resources/Entity/PowerCubeBox/PowerCubeBox.tscn" id="8_tdh8m"]
 
 [sub_resource type="Resource" id="Resource_sbjl7"]
 script = ExtResource("4_xypa0")
-Prefab = ExtResource("6_djagw")
+Prefab = ExtResource("4_sbjl7")
 SpawnProbability = 1.0
 metadata/_custom_type_script = "uid://trc0leombdqe"
 
 [sub_resource type="Resource" id="Resource_djagw"]
 script = ExtResource("4_xypa0")
-Prefab = ExtResource("4_j1dda")
+Prefab = ExtResource("6_tdh8m")
 SpawnProbability = 1.0
 metadata/_custom_type_script = "uid://trc0leombdqe"
 

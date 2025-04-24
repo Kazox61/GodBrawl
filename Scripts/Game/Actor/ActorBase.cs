@@ -41,12 +41,12 @@ public partial class ActorBase : CharacterBody3D, IAttackable {
 		}
 	}
 
+	public void ApplyDamage(int damage, ActorBase source) {
+		Health -= damage;
+	}
+
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	private void PlayAnimation(string animationName) {
 		Body.Call(animationName);
-	}
-
-	public void ApplyDamage(int damage, ActorBase source) {
-		Health -= damage;
 	}
 }

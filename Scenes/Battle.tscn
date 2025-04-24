@@ -63,7 +63,7 @@ shadow_blur = 1.25
 [node name="TestMap" parent="." instance=ExtResource("1_vr6xi")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://cjal1jrk6n0hr", "uid://bnx85qkr3v6x1", "uid://ca707t4h8da56", "uid://c8qujbmphb1qk", "uid://cdx6nax2nbd7h", "uid://bnx3ehicld8wx")
+_spawnable_scenes = PackedStringArray("uid://cjal1jrk6n0hr", "uid://mvsyt7ntphin", "uid://bxlthk3txe105", "uid://dsufvcjyp5k8w", "uid://chpgroxi3owar", "uid://bnx3ehicld8wx")
 spawn_path = NodePath("..")
 
 [node name="ControllerMultiplayer" type="Node" parent="." node_paths=PackedStringArray("SpawnParent", "_map")]

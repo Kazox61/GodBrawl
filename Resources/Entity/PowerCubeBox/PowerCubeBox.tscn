@@ -1,43 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdx6nax2nbd7h"]
+[gd_scene load_steps=8 format=3 uid="uid://chpgroxi3owar"]
 
-[ext_resource type="PackedScene" uid="uid://dqte0gtb5i5iq" path="res://Resources/Entity/PowerCubeBox/Healthbar.tscn" id="1_1ymwv"]
-[ext_resource type="Script" uid="uid://be774ll0fgqrc" path="res://Scripts/Game/Entity/EntityBase.cs" id="1_e0era"]
-[ext_resource type="Script" uid="uid://cl3jh6osxl8l4" path="res://Scripts/Game/Entity/AreaEntityAttackable.cs" id="1_xp4pc"]
+[ext_resource type="PackedScene" uid="uid://v0oihmg1ebvo" path="res://Resources/Entity/EntityBase.tscn" id="1_7qod1"]
+[ext_resource type="Script" uid="uid://cl3jh6osxl8l4" path="res://Scripts/Game/Entity/AreaEntityAttackable.cs" id="2_qkwtt"]
+[ext_resource type="PackedScene" uid="uid://dqte0gtb5i5iq" path="res://Resources/Entity/PowerCubeBox/Healthbar.tscn" id="3_uwhms"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsev"]
 albedo_color = Color(0.984314, 0.545098, 0.266667, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_b0ni1"]
+[sub_resource type="BoxMesh" id="BoxMesh_k4vok"]
 material = SubResource("StandardMaterial3D_mvsev")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b0ni1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti5hf"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b0ni1"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 0
+[sub_resource type="ViewportTexture" id="ViewportTexture_e0era"]
+viewport_path = NodePath("Healthbar/Sprite3D/SubViewport")
 
-[node name="PowerCubeBox" type="Node3D"]
-script = ExtResource("1_e0era")
+[node name="PowerCubeBox" node_paths=PackedStringArray("HealthProgress", "HealthLabel") instance=ExtResource("1_7qod1")]
+HealthProgress = NodePath("Healthbar/Sprite3D/SubViewport/Control/Progressbar")
+HealthLabel = NodePath("Healthbar/Sprite3D/SubViewport/Control/Progressbar/Label")
+MaxHealth = 7500
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_b0ni1")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_k4vok")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D" node_paths=PackedStringArray("_entity")]
-script = ExtResource("1_xp4pc")
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" index="0" node_paths=PackedStringArray("_entity")]
+script = ExtResource("2_qkwtt")
 _entity = NodePath("../..")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
-shape = SubResource("BoxShape3D_b0ni1")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/Area3D" index="0"]
+shape = SubResource("BoxShape3D_ti5hf")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="1"]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_b0ni1")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ti5hf")
 
-[node name="Healthbar" parent="." instance=ExtResource("1_1ymwv")]
+[node name="Healthbar" parent="." index="2" instance=ExtResource("3_uwhms")]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_b0ni1")
+[node name="Sprite3D" parent="Healthbar" index="0"]
+texture = SubResource("ViewportTexture_e0era")
+
+[editable path="Healthbar"]

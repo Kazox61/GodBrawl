@@ -11,6 +11,7 @@ public partial class ProjectileBase : Node3D {
 	private float _speed;
 	private int _damage;
 	private ActorBase _source;
+	
 
 	private Vector3 _destination;
 
@@ -44,6 +45,7 @@ public partial class ProjectileBase : Node3D {
 	private void OnAreaEntered(Area3D area) {
 		if (area is IAttackable attackable) {
 			attackable.ApplyDamage(_damage, _source);
+			Callable.From(this.Remove).CallDeferred();
 		}
 	}
 	
