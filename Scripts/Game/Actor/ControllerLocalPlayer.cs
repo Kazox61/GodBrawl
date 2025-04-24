@@ -30,7 +30,9 @@ public partial class ControllerLocalPlayer : Node3D {
 		var canvasLocalPlayer = _canvasLocalPlayerPrefab.Instantiate<CanvasLocalPlayer>();
 		GetTree().Root.AddChild(canvasLocalPlayer);
 		
-		canvasLocalPlayer.AimJoystick.JoystickReleased += OnAimJoystickReleased;
+		canvasLocalPlayer.AimJoystick.Flicked += OnAimJoystickFlicked;
+		canvasLocalPlayer.AimJoystick.FlickCanceled += OnAimJoystickFlickCanceled;
+		canvasLocalPlayer.AimJoystick.Tapped += OnAimJoystickTapped;
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -58,12 +60,30 @@ public partial class ControllerLocalPlayer : Node3D {
 		}
 	}
 	
-	private void OnAimJoystickReleased(Vector2 inputDirection) {
-		RpcId(1, MethodName.Shoot, inputDirection);
+	private void OnAimJoystickFlicked(Vector2 inputDirection) {
+		RpcId(1, MethodName.Attack, inputDirection);
+	}
+	
+	private void OnAimJoystickFlickCanceled() {
+		Input.VibrateHandheld(Mathf.RoundToInt(0.1f * 1000), 0.1f);
+	}
+	
+	private void OnAimJoystickTapped() {
+		RpcId(1, MethodName.AutoAttack);
 	}
 
 	[Rpc(CallLocal = false)]
-	private void Shoot(Vector2 direction) {
-		GD.Print($"Shoot with direction: {direction}");
+	private void Attack(Vector2 direction) {
+		GD.Print($"Attack with direction: {direction}");
+	}
+	
+	[Rpc(CallLocal = false)]
+	private void AutoAttack() {
+		GD.Print("Auto attack");
+	}
+	
+	[Rpc(CallLocal = false)]
+	private void SuperAttack(Vector2 direction) {
+		GD.Print($"Super attack with direction: {direction}");
 	}
 }

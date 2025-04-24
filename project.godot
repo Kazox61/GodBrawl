@@ -40,35 +40,35 @@ theme/custom_font="uid://cf2m3t54q6jho"
 [input]
 
 move_left={
-"deadzone": 0.2,
+"deadzone": 0.05,
 "events": []
 }
 move_right={
-"deadzone": 0.2,
+"deadzone": 0.05,
 "events": []
 }
 move_up={
-"deadzone": 0.2,
+"deadzone": 0.05,
 "events": []
 }
 move_down={
-"deadzone": 0.2,
+"deadzone": 0.05,
 "events": []
 }
 aim_left={
-"deadzone": 0.2,
+"deadzone": 0.5,
 "events": []
 }
 aim_right={
-"deadzone": 0.2,
+"deadzone": 0.5,
 "events": []
 }
 aim_up={
-"deadzone": 0.2,
+"deadzone": 0.5,
 "events": []
 }
 aim_down={
-"deadzone": 0.2,
+"deadzone": 0.5,
 "events": []
 }
 
